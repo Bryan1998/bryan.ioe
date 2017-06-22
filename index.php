@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>Page Title</title>
+<title>Push The Win Button</title>
 <link rel="stylesheet" href="css/main.css" />
 </head>
 <body>
