@@ -1,0 +1,33 @@
+# By Bryan & The Internet
+
+# IF YOU ARE RUNNING DEBIAN 9 AND ARE HAVING PROBLEMS WITH THE KERNEL MODULES BUILDING, DO THIS.
+# You will need to have sudo to do this correctly, i won't go into detail on how to do that here. 
+
+# Download VMWare Player 12.5.7 (12.5.6 works too, but i prefer the latest :P)
+cd ~/Downloads
+wget https://download3.vmware.com/software/player/file/VMware-Player-12.5.7-5813279.x86_64.bundle
+
+# chmod it and run the file
+chmod a+x VMware-Player-12.5.7-5813279.x86_64.bundle
+sudo ./VMware-Player-12.5.7-5813279.x86_64.bundle
+
+# create a temp folder and copy the module files to the folder.
+mkdir ~/vmmodules
+cp /usr/lib/vmware/modules/source/vmnet.tar /usr/lib/vmware/modules/source/vmmon.tar ~/vmmodules/
+
+# make the modules manually
+tar -xvf vmmon.tar
+cd vmmon-only
+make
+cd ..
+sudo cp vmmon.o /lib/modules/`uname -r`/kernel/drivers/misc/vmmon.ko.gz
+
+tar -xvf vmnet.tar
+cd vmnet-only
+make
+cd ..
+sudo cp vmnet.o /lib/modules/`uname -r`/kernel/drivers/misc/vmnet.ko.gz
+
+#Then reload the modules and restart vmware service, vmplayer should works now.
+sudo depmod -a
+sudo systemctl restart vmware
