@@ -3,3 +3,22 @@ body {
 	color: white;
 	font-family: sans-serif;
 }
+/* unvisited link */
+a:link {
+    color: LightSkyBlue;
+}
+
+/* visited link */
+a:visited {
+    color: LightSteelBlue;
+}
+
+/* mouse over link */
+a:hover {
+    color: LightYellow;
+}
+
+/* selected link */
+a:active {
+    color: LightGreen;
+}
