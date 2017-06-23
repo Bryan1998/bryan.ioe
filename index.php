@@ -8,11 +8,13 @@
 	<link rel="stylesheet" href="css/main.css" />
 </head>
 
-<body>
-	<h1>Bryan Hernandez</h1>
-	<p><?php echo("A very random number between ".$min." and ".$max." is ".mt_rand($min,$max));?></p>
-	<br />
-	<a href="files/vmware-fix.txt">VMWare Fix</a> <a href="https://github.com/Bryan1998">GitHub</a>
+<body><ul class="topnav">
+	<li><a class="active" href="index.php">Home</a></li>
+	<li><a href="https://github.com/Bryan1998">GitHub</a></li>
+	<li><a href="downloads">Downloads</a></li>
+</ul> 
+	<hr />
+	<p><?php $min = 0; $max = 100; echo("A very random number between ".$min." and ".$max." is ".mt_rand($min,$max));?></p>
 </body>
 
 </html>
