@@ -1,0 +1,10 @@
+# TO INSTALL VMWARE TOOLS FOR WINDOWS 10
+# YOU NEED SUDO INSTALLED AND CONFIGURED PROPERLY!
+
+wget https://softwareupdate.vmware.com/cds/vmw-desktop/ws/12.5.5/5234757/linux/packages/vmware-tools-windows-10.1.6-5214329.x86_64.component.tar
+tar -xf vmware-tools-windows-10.1.6-5214329.x86_64.component.tar
+sudo /usr/lib/vmware-installer/2.1.0/vmware-installer --required --console --install-component=~/.cache/vmware/cds/vmware-tools-windows-10.1.6-5214329.x86_64.component
+
+# boot up the VM and decline the update
+# it will ask you if you want to install, click install
+# then in the VM, navigate to the CD drive and install like anything else.
