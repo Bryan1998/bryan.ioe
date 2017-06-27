@@ -20,7 +20,7 @@
     <tr>
       <th>Filename</th>
       <th>Type</th>
-      <th>Size <small>(bytes)</small></th>
+      <th>Size</th>
       <th>Date Modified</th>
     </tr>
   </thead>
@@ -28,10 +28,10 @@
   <?php
     // Opens directory
     $myDirectory=opendir(".");
-
     // Gets each entry
     while($entryName=readdir($myDirectory)) {
       $dirArray[]=$entryName;
+      $dirArray = array_filter($dirArray, create_function('$a','return ($a[0]!=".");'));
     }
 
     // Finds extensions of files
@@ -51,7 +51,12 @@
 
     // Sorts files
     sort($dirArray);
-
+		function convertToReadableSize($size){
+		$base = log($size) / log(1000);
+		$suffix = array("", "KB", "MB", "GB", "TB");
+		$f_base = floor($base);
+		return round(pow(1000, $base - floor($base)), 1) . "&nbsp;" . $suffix[$f_base];
+	}
     // Loops through the array of files
     for($index=0; $index < $indexCount; $index++) {
 
@@ -63,10 +68,10 @@
       $extn=findexts($dirArray[$index]);
 
       // Gets file size
-      $size=number_format(filesize($dirArray[$index]));
+      $size=convertToReadableSize(filesize($dirArray[$index]));
 
       // Gets Date Modified Data
-      $modtime=date("M j Y g:i A", filemtime($dirArray[$index]));
+      $modtime=date("m/d/Y G:i", filemtime($dirArray[$index]));
       $timekey=date("YmdHis", filemtime($dirArray[$index]));
 
       // Print 'em
