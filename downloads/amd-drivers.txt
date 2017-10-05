@@ -1,0 +1,17 @@
+## RUN AS ROOT!!!!!!!!!!!
+
+# backup sources.list
+mv /etc/apt/sources.list /etc/apt/sources.list.save
+
+# download the sources.list file and copy it to /etc/apt/
+cd ~/Downloads
+wget 10.183.1.1/downloads/sources.list
+mv ~/Downloads/sources.list /etc/apt/sources.list
+
+# reload apt & install drivers
+apt update -y && apt install firmware-amd-graphics -y
+
+# reboot
+reboot NOW
+
+# welcome to full resolution!
